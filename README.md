@@ -1,51 +1,16 @@
 # Python-Quiz
 
-# Here is my code
+## Here's how it works
 
-# This part is a module which I call into the main code
+The game is very simple. There will be three randomly generated quiz questions, from a question bank I have created. The user has to try and get them right. However, there is a slight twist as all the questions are opinionated, so the answer may not always be what they think. 
 
-import random 
-
-def get_question():
-    questions = [("What is the name of the best lecturer?", "Katia Punter"),
-                 ("What is the name of the best course?", "Intensive Foundations of Computer Science & Programming"),
-                 ("What is the best Programming Language?", "Python"),
-                 ("What is the best university?", "Northeastern University London"),
-                 ("What mark will this formative get?", "100 (hopefully😅)"),
-                 ("Which team is the best at football?", "Liverpool FC"),
-                 ("Is this quiz enjoyable?", "Yes"),
-                 ("What is the best laptop?", "Macbook")]
-    return random.choice(questions)
+The game will greet the user and then ask for their name. From there, the quiz starts. The three random questions will be shown one after the other. The quiz will let them know immediately if their answer is correct or not through a congratulatory or commiserative message respectively. At the end their total score will be produced and they will receive a medal based on how many they got right. There is no medal for those who get no correct answers. Thereafter, the game ends and a leaving message is displayed.
 
 
-# This is my main code
+## Some technical information on the code
 
-from random_question import get_question
+The initial greeting uses a simple print function and displays a welcome message. Then there is an input function to gather the name of the user. The user's name is then stored in u_name and used to create a starting message, again displayed through a print function.
 
-print("Hello, welcome to the Opiniated Quiz - where the questions may seem like opinions but the answers are all facts!")
-u_name = input ("Before we begin, what is your name?")
-print("Great! Let's get started " + u_name)
+The questions for the game are called randomly from the module random_question. This is done through the get_question function which picks questions at random from my list of tuples, due to the return random.choice(questions). 
 
-score = 0
-
-for i in range (3):
-    q = get_question()
-    ans = input (q[0])
-    if ans == q[1]:
-        print ("Amazing! That was correct 🎉🎉🎉")
-        score = score + 1
-    else:
-        print ("Incorrect 😢, the right answer is: " + q[1])
-
-print ("You scored " + str(score) + " points") 
-
-if score == 3:
-    print ("Congratulations!!! You have done a brilliant job! Here is your medal 🥇")
-elif score == 2:
-    print ("Good job! You were unlucky to get 1 wrong - but here is a medal for you 🥈")
-elif score == 1:
-    print ("Good try! Better luck next time. Here is a medal for you 🥉")
-else:
-    print ("You need some practice! Maybe you'll get a medal next time 🙂")
-
-print ("Thank you for playing " + u_name + "! Hope to see you again soon 😃")
+Then a for loop is used to make sure the same code is run three times, so that three questions are produced. The first part of each tuple is the question and the second part is the answer. So the first part is used under the 'q' (for question) variable, the question (q[0]) is displayed, and the answer is captured using the input function. The user then inputs their answer and if it matches the answer in the second half of the tuple q[1] then a congratulatory message is displayed using the print function. Otherwise it displays a commiserative message instead. This is done through an if statement. The score counter also goes up if the answer is correct. After the three questions have been asked, the score is displayed along with a message based on the score. This was again done with if/elif statements. The final greeting is personalised using the u_name variable from earlier and after displaying this, the quiz comes to an end.
